@@ -20,6 +20,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        cormorant: ['Cormorant Garamond', 'serif'],
+        mrs: ['Mrs Saint Delafield', 'cursive'],
+      },
     },
   },
   plugins: [],

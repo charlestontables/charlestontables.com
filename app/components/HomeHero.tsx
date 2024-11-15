@@ -23,8 +23,8 @@ const HomeHero: React.FC = () => {
             <header className="lg:px-16 px-4 flex flex-wrap items-center py-4 shadow-sm">
                 <div className="flex-1 flex justify-between items-center mix-blend-screen">
                     <a href="#" >
-                        <strong className="text-1xl text-gray-400 font-extrabold">CHARLESTON</strong> <br />
-                        <strong className="text-3xl text-gray-400 font-extrabold">TABLES</strong>
+                        <strong className="text-1xl text-gray-400 font-cormorant font-extrabold">CHARLESTON</strong> <br />
+                        <strong className="text-3xl text-gray-400 font-mrs font-extrabold">TABLES</strong>
                     </a>
 
                 </div>
