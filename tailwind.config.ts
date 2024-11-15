@@ -1,3 +1,4 @@
+// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,8 +22,10 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        cormorant: ['Cormorant Garamond', 'serif'],
-        mrs: ['Mrs Saint Delafield', 'cursive'],
+        cormorant: 'var(--font-cormorant-garamond)',
+        mrs: 'var(--font-mrs-saint-delafield)',
+        sans: ['var(--font-inter)'],
+        mono: ['var(--font-roboto-mono)'],
       },
     },
   },

@@ -23,8 +23,8 @@ const HomeHero: React.FC = () => {
             <header className="lg:px-16 px-4 flex flex-wrap items-center py-4 shadow-sm">
                 <div className="flex-1 flex justify-between items-center mix-blend-screen">
                     <a href="#" >
-                        <strong className="text-1xl text-gray-400 font-cormorant font-extrabold">CHARLESTON</strong> <br />
-                        <strong className="text-3xl text-gray-400 font-mrs font-extrabold">TABLES</strong>
+                        <strong className="text-1xl text-gray-400 font-extrabold">CHARLESTON</strong> <br />
+                        <strong className="text-6xl text-gray-400 font-light font-mrs lowercase">TABLES</strong>
                     </a>
 
                 </div>
@@ -52,11 +52,11 @@ const HomeHero: React.FC = () => {
 
             <div className="w-[90%] mx-auto h-full flex items-center justify-between py-10">
                 <div className="lg:w-fit">
-                    <div className="sm:text-6xl xs:text-5xl text-left text-white font-serif font-extrabold uppercase">
-                        <h1>Set</h1>
-                        <h1>the</h1>
-                        <h1>Table</h1>
-                        <h1 className="bg-black/30 text-white rounded-sm px-1 shadow-sm shadow-white/50">Charleston</h1>
+                    <div className="sm:text-6xl xs:text-5xl text-left text-white font-extrabold font-cormorant ">
+                        <h1 className='uppercase'>Set</h1>
+                        <h1 className='uppercase'>the</h1>
+                        <h1 className='font-mrs font-thin sm:text-9xl '>Table</h1>
+                        <h1 className="bg-black/30 text-white rounded-sm px-1 shadow-sm shadow-white/50 uppercase">Charleston</h1>
 
                     </div>
                     <div className="w-full flex items-center justify-between mt-6 py-1 px-4 uppercase bg-green-500 rounded-sm">
