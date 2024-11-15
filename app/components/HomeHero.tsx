@@ -1,7 +1,23 @@
+"use client";
 import type React from 'react';
-
+import { useEffect } from 'react';
+import { createElement } from 'react';
+import 'ionicons/icons';
 
 const HomeHero: React.FC = () => {
+    useEffect(() => {
+        // Dynamically load the Ionicons library
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js';
+        script.type = 'module';
+        document.body.appendChild(script);
+
+        const noModuleScript = document.createElement('script');
+        noModuleScript.src = 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js';
+        noModuleScript.noModule = true;
+        document.body.appendChild(noModuleScript);
+    }, []);
+
     return (
         <div className="w-full h-screen bg-no-repeat bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1552196563-55cd4e45efb3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHx5b2dhfGVufDB8MHx8fDE3MTY5NjgwNTN8MA&ixlib=rb-4.0.3&q=80&w=1080')]">
             <header className="lg:px-16 px-4 flex flex-wrap items-center py-4 shadow-sm">
@@ -41,7 +57,7 @@ const HomeHero: React.FC = () => {
                         <h3 className="text-white text-lg font-semibold">join now</h3>
                         <div className="w-[40%] flex items-center text-gray-700 text-4xl gap-0">
                             <hr className="w-full border border-gray-700 relative -right-3" />
-                            <ion-icon name="chevron-forward"></ion-icon>
+                            {createElement('ion-icon', { name: 'chevron-forward' })}
                         </div>
                     </div>
                     <p className="text-md text-white bg-black/30 font-semibold mt-1 capitalize rounded-lg p-2">25% Discount on first month</p>
@@ -50,16 +66,16 @@ const HomeHero: React.FC = () => {
                 <div>
                     <ul className="text-3xl text-white">
                         <li className="flex justify-center items-center p-1 bg-black/40 rounded-full">
-                            <ion-icon name="logo-facebook"></ion-icon>
+                            {createElement('ion-icon', { name: 'logo-facebook' })}
                         </li>
                         <li className="flex justify-center items-center p-1 bg-black/40 rounded-full mt-2">
-                            <ion-icon name="logo-instagram"></ion-icon>
+                            {createElement('ion-icon', { name: 'logo-instagram' })}
                         </li>
                         <li className="flex justify-center items-center p-1 bg-black/40 rounded-full mt-2">
-                            <ion-icon name="logo-whatsapp"></ion-icon>
+                            {createElement('ion-icon', { name: 'logo-whatsapp' })}
                         </li>
                         <li className="flex justify-center items-center p-1 bg-black/40 rounded-full mt-2">
-                            <ion-icon name="person-circle-outline"></ion-icon>
+                            {createElement('ion-icon', { name: 'person-circle-outline' })}
                         </li>
                     </ul>
                 </div>
