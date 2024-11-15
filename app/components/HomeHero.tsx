@@ -48,7 +48,7 @@ const HomeHero: React.FC = () => {
                     </nav>
                 </div>
             </header>
-            {/* this should redeploy for vercel */}
+            {/* try again for the benefit of vercel now the repo is public */}
 
             <div className="w-[90%] mx-auto h-full flex items-center justify-between py-10">
                 <div className="lg:w-fit">
