@@ -44,6 +44,7 @@ const HomeHero: React.FC = () => {
                     </nav>
                 </div>
             </header>
+            {/* this should redeploy for vercel */}
 
             <div className="w-[90%] mx-auto h-full flex items-center justify-between py-10">
                 <div className="lg:w-fit">
