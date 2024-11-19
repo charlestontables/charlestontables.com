@@ -59,10 +59,10 @@ const HomeHero: React.FC = () => {
                         <h1 className="bg-black/30 text-white rounded-sm px-1 shadow-sm shadow-white/50 uppercase">Charleston</h1>
 
                     </div>
-                    <div className="w-full flex items-center justify-between mt-6 py-1 px-4 uppercase bg-green-500 rounded-sm">
+                    <div className="w-full flex items-center justify-between mt-6 py-1 px-4 uppercase bg-lime-800 rounded-sm">
                         <h3 className="text-white text-lg font-semibold">join now</h3>
-                        <div className="w-[40%] flex items-center text-gray-700 text-4xl gap-0">
-                            <hr className="w-full border border-gray-700 relative -right-3" />
+                        <div className="w-[40%] flex items-center text-white text-4xl gap-0">
+                            <hr className="w-full border border-white relative -right-3" />
                             {createElement('ion-icon', { name: 'chevron-forward' })}
                         </div>
                     </div>
