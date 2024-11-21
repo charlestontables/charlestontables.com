@@ -1,14 +1,14 @@
 
-import GalleryLightbox from './components/GalleryLightbox';
+'use client';
 import HomeHero from './components/HomeHero';
-import ProductShowcase from './components/ProductShowcase';
+import ProductShowcaseContainer from './components/ProductShowcaseContainer';
 
 
 export default function Home() {
   return (
     <div>
       <HomeHero />
-      <ProductShowcase productName='test product name' availability='IN STOCK' />
+      <ProductShowcaseContainer />
     </div>
   );
 }

@@ -16,10 +16,11 @@ interface ImageType {
 }
 
 interface GalleryLightboxProps {
+    mainImage: ImageType;
     images: ImageType[];
 }
 
-const GalleryLightbox: React.FC<GalleryLightboxProps> = ({ images }) => {
+const GalleryLightbox: React.FC<GalleryLightboxProps> = ({ mainImage, images }) => {
     SwiperCore.use([Thumbs, EffectFade]);
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
     const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -51,6 +52,18 @@ const GalleryLightbox: React.FC<GalleryLightboxProps> = ({ images }) => {
                                 loop={true}
                                 className="nav-for-slider"
                             >
+                                <SwiperSlide key={mainImage.id} className="thumbs-slide lg:!w-[126px] md:!h-[135px] w-full h-[110px]">
+                                    <Image
+                                        src={mainImage.url}
+                                        alt="Main gallery item"
+                                        width={mainImage.width}
+                                        height={mainImage.height}
+                                        className="gallery-image w-full cursor-pointer h-full rounded-2xl border-2 border-gray-200 transition-all duration-500 hover:border-indigo-600 object-cover"
+                                        onClick={() => openLightbox(mainImage.url)}
+                                        onKeyUp={(e) => e.key === 'Enter' && openLightbox(mainImage.url)}
+                                        tabIndex={0}
+                                    />
+                                </SwiperSlide>
                                 {images.map((src) => (
                                     <SwiperSlide key={src.id} className="thumbs-slide lg:!w-[126px] md:!h-[135px] w-full h-[110px]">
                                         <Image
@@ -75,6 +88,17 @@ const GalleryLightbox: React.FC<GalleryLightboxProps> = ({ images }) => {
                                 thumbs={{ swiper: thumbsSwiper }}
                                 className="main-slide-carousel"
                             >
+                                <SwiperSlide key={mainImage.id}>
+                                    <div className="block xl:w-[1062px] w-full mx-auto h-[627px] rounded-3xl">
+                                        <Image
+                                            src={mainImage.url}
+                                            alt="Main gallery item"
+                                            width={mainImage.width}
+                                            height={mainImage.height}
+                                            className="gallery-image w-full h-full mx-auto rounded-3xl object-cover"
+                                        />
+                                    </div>
+                                </SwiperSlide>
                                 {images.map((src) => (
                                     <SwiperSlide key={src.id}>
                                         <div className="block xl:w-[1062px] w-full mx-auto h-[627px] rounded-3xl">

@@ -11,7 +11,7 @@ interface ProductShowcaseProps {
     category: string;
     subcategory: string;
     mainImage: string;
-    images?: string[];
+    images: string[];
 }
 
 const ProductShowcase: React.FC<ProductShowcaseProps> = ({
@@ -24,6 +24,13 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({
     mainImage,
     images = [],
 }) => {
+    const mainImageObject = {
+        id: 'main',
+        url: mainImage,
+        width: 800,
+        height: 600,
+    };
+
     const imageObjects = images.map((url, index) => ({
         id: `${index}`,
         url,
@@ -41,7 +48,7 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({
                 </div>
                 <div className="flex flex-col md:flex-row -mx-4">
                     <div className="md:flex-1 px-4">
-                        <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+                        <div className="relative h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                             {mainImage && (
                                 <Image
                                     className="w-full h-full object-cover"
@@ -99,7 +106,7 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row -mx-4">
-                    <GalleryLightbox images={imageObjects} />
+                    <GalleryLightbox mainImage={mainImageObject} images={imageObjects} />
                 </div>
             </div>
         </div>
