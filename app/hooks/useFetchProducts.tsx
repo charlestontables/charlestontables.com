@@ -54,7 +54,11 @@ const useFetchProducts = () => {
                 console.log('Fetched products:', products); // Debugging log
                 setProducts(products);
             } catch (err) {
-                setError(err.message);
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError(String(err));
+                }
             } finally {
                 setLoading(false);
             }
