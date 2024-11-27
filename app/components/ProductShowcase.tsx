@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import Image from 'next/image';
 import GalleryLightbox from './GalleryLightbox';
 
@@ -11,7 +11,7 @@ interface ProductShowcaseProps {
     category: string;
     subcategory: string;
     mainImage: string;
-    images: string[];
+    images?: string[];
 }
 
 const ProductShowcase: React.FC<ProductShowcaseProps> = ({
@@ -24,19 +24,24 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({
     mainImage,
     images = [],
 }) => {
-    const mainImageObject = {
-        id: 'main',
-        url: mainImage,
-        width: 800,
-        height: 600,
-    };
-
-    const imageObjects = images.map((url, index) => ({
+    const validImages = images.filter((url) => url); // Filter out any undefined or empty URLs
+    const imageObjects = validImages.map((url, index) => ({
         id: `${index}`,
         url,
         width: 800,
         height: 600,
     }));
+
+    console.log('Rendering product:', {
+        name,
+        description,
+        price,
+        currency,
+        category,
+        subcategory,
+        mainImage,
+        images: validImages,
+    }); // Debugging log
 
     return (
         <div className="bg-blue-100 py-8">
@@ -48,7 +53,7 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({
                 </div>
                 <div className="flex flex-col md:flex-row -mx-4">
                     <div className="md:flex-1 px-4">
-                        <div className="relative h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+                        <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
                             {mainImage && (
                                 <Image
                                     className="w-full h-full object-cover"
@@ -106,7 +111,7 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row -mx-4">
-                    <GalleryLightbox mainImage={mainImageObject} images={imageObjects} />
+                    <GalleryLightbox images={imageObjects} />
                 </div>
             </div>
         </div>

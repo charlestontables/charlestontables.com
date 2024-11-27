@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import ProductShowcase from './ProductShowcase';
 import useFetchProducts from '../hooks/useFetchProducts';
 
@@ -7,6 +7,8 @@ const ProductShowcaseContainer: React.FC = () => {
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
+
+    console.log('Products to render:', products); // Debugging log
 
     return (
         <div>

@@ -18,56 +18,43 @@ const useFetchProducts = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        console.log('useFetchProducts hook called'); // Initial log statement
-
         const fetchProducts = async () => {
             try {
                 const repoUrl = 'https://api.github.com/repos/joshualinog/charlestontables/contents/products';
-                console.log('Fetching product directories from:', repoUrl); // Debugging log
                 const response = await fetch(repoUrl);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch product directories: ${response.statusText}`);
-                }
                 const productDirs = await response.json();
                 console.log('Fetched product directories:', productDirs); // Debugging log
 
-                const productPromises = productDirs.map(async (dir: any) => {
-                    try {
-                        const productUrl = `https://raw.githubusercontent.com/joshualinog/charlestontables/main/products/${dir.name}/product.json`;
-                        console.log('Fetching product data from:', productUrl); // Debugging log
-                        const productResponse = await fetch(productUrl);
-                        if (!productResponse.ok) {
-                            throw new Error(`Failed to fetch product data for ${dir.name}: ${productResponse.statusText}`);
-                        }
-                        const productData = await productResponse.json();
-                        console.log('Fetched product data:', productData); // Debugging log
+                const productPromises = productDirs.map(async (dir: { name: string }) => {
+                    const productDirUrl = `https://api.github.com/repos/joshualinog/charlestontables/contents/products/${dir.name}`;
+                    const productDirResponse = await fetch(productDirUrl);
+                    const productFiles = await productDirResponse.json();
+                    console.log('Fetched product files:', productFiles); // Debugging log
 
-                        // Fetch images
-                        const images = productData.images.map((image: string) => {
-                            return `https://raw.githubusercontent.com/joshualinog/charlestontables/main/products/${dir.name}/${image}`;
-                        });
-                        productData.images = images;
+                    // Filter and order images
+                    const images = productFiles
+                        .filter((file: { name: string }) => file.name.endsWith('.jpg'))
+                        .map((file: { name: string }) => `https://raw.githubusercontent.com/joshualinog/charlestontables/main/products/${dir.name}/${file.name}`);
+                    console.log('Ordered images:', images); // Debugging log
 
-                        // Set main image URL
-                        productData.mainImage = `https://raw.githubusercontent.com/joshualinog/charlestontables/main/products/${dir.name}/${productData.mainImage}`;
+                    // Fetch product.json
+                    const productJsonUrl = `https://raw.githubusercontent.com/joshualinog/charlestontables/main/products/${dir.name}/product.json`;
+                    const productJsonResponse = await fetch(productJsonUrl);
+                    const productData = await productJsonResponse.json();
+                    console.log('Fetched product data:', productData); // Debugging log
 
-                        return productData;
-                    } catch (err) {
-                        console.error(`Error fetching product data for ${dir.name}:`, err);
-                        return null;
-                    }
+                    // Set main image and images array
+                    productData.mainImage = images[0];
+                    productData.images = images;
+
+                    return productData;
                 });
 
                 const products = await Promise.all(productPromises);
                 console.log('Fetched products:', products); // Debugging log
-                setProducts(products.filter(Boolean));
+                setProducts(products);
             } catch (err) {
-                console.error('Error fetching products:', err);
-                if (err instanceof Error) {
-                    setError(err.message);
-                } else {
-                    setError('An unknown error occurred');
-                }
+                setError(err.message);
             } finally {
                 setLoading(false);
             }
